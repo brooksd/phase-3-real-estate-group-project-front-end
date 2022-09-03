@@ -1,11 +1,12 @@
 import React from "react";
+//import SearchBar from "./components/SearchBar";
+//import Footer from './components/Footer';
 
 function Home(){
-    return(
-        <div>
-            <h1>This is our home page</h1>
-        </div>
-    )
+    return (
+      <div>
+        <input type='text' placeholder='Search..' />
+      </div>
+    );
 }
-
 export default Home;
