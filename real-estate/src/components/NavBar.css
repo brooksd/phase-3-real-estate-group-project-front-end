@@ -1,6 +1,12 @@
-.nav-bar{
-    padding: 28px;
-    text-align: right;
+.a{
     text-decoration: none;
+    padding: 28px;
+}
+
+.nav-bar{
+    text-align: right;
     cursor: pointer;
+    text-decoration: none;
+    padding: 28px;
+    display: flex;
 }
