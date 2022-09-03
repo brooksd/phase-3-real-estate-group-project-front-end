@@ -1,9 +1,19 @@
 import React from "react";
-import background from './components/images/image.jpeg'
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
 function Home(){
     return(
-        <div style={{ backgroundImage: `url(${background})`,backRepeat: 'no-repeat' }}>
-            <h1>This is our home page</h1>
+        <div>
+            <Form>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label></Form.Label>
+        <Form.Control type="text" placeholder="Search" />
+      </Form.Group>
+      <Button variant="primary" type="submit">
+        Submit
+      </Button>
+    </Form>
+            <h1><em>This is our home page</em></h1>
         </div>
     )
 }
