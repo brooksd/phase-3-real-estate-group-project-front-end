@@ -1,7 +1,8 @@
 import React from "react";
+import "./About.css"
 const About = () => {
     return (
-      <div>
+      <div className="about">
           <h1>Company history</h1> 
            <p> At Real Estate Company We believe that when it comes to finding a home what's outside the front door is just as important as what;s behind it..
 
