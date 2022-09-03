@@ -10,3 +10,11 @@
     padding: 28px;
     display: flex;
 }
+
+.routes-color{
+    color: black;
+}
+
+.active{
+    color: #fcfcfc
+}
