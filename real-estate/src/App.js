@@ -6,6 +6,7 @@ import ContactUs from './ContactUs';
 import NavBar from './components/NavBar';
 import Location from './Location';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (
