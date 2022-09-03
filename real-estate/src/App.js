@@ -4,6 +4,7 @@ import About from './About';
 import Listings from './Listings';
 import ContactUs from './ContactUs';
 import NavBar from './components/NavBar';
+import Location from './Location';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
       </Route>
       <Route  path="/listings">
         <Listings />
+      </Route>
+      <Route  path="/location">
+        <Location />
       </Route>
      </Switch>
      </BrowserRouter>

@@ -1,5 +1,5 @@
 import React from "react";
-
+//import background from './components/images/image.jpeg'
 function Home(){
     return(
         <div>
