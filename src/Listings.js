@@ -6,7 +6,7 @@ function Listings(){
 const [list, setList] = useState([]);
 
 useEffect(()=> {
-fetch('http://localhost:9292/listings')
+fetch('http://localhost:9292/entries')
 .then((res)=>res.json())
 .then((res)=>console.log(res))
 

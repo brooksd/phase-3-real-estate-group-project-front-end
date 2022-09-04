@@ -8,6 +8,7 @@ import Location from './pages/Location';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Footer from './layouts/Footer';
+import Entries from './components/Entries';
 
 function App() {
   return (
@@ -30,8 +31,12 @@ function App() {
           <Route path='/location'>
             <Location />
           </Route>
+          <Route path='/entries'>
+         <Entries/>
+          </Route>
         </Switch>
         <Footer />
+
       </BrowserRouter>
     </div>
   );
