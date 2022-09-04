@@ -1,7 +1,7 @@
 .listing-landing{
     background-image: url('../components/images/image.jpg');
     background-size: cover;
-    height: 90vh;
+    height: 95vh;
     display: flex;
     justify-content: center;
     align-items: center;

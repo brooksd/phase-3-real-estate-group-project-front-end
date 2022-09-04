@@ -21,11 +21,9 @@ const SearchBar = () => {
           <select className='select' name='buildings' id='buildings'>
             <option value='All'>All</option>
             <option value='apartment'>Apartments</option>
-            <option value='offices'>Offices</option>
-            <option value='townhome'>Towhome</option>
-            <option value='houses'>Houses</option>
-            <option value='studio'>Studio</option>
-          </select>
+            <option value='bungalows'>Bungalows</option>
+            <option value='mansions'>Mansions</option>
+           </select>
         </div>
         <div className='search'>
           <form className='search-form'>
