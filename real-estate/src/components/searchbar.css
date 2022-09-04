@@ -1,0 +1,25 @@
+.search-bar{
+    background-color: grey;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.select, .search-input{
+    background-color: white;
+    padding: 1rem;
+    margin-right: 2.5rem;
+    outline: none;
+}
+
+.search-label{
+    background-color: white;
+    padding: 1rem;
+    margin-right: 2.5rem;
+    outline: none;
+    background: lightgreen;
+    font-size: 1.5rem;
+    color: white;
+    font-weight: 500;
+}
