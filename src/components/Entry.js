@@ -7,6 +7,14 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 function Entry() {
+
+
+    function handleDeleteClick(){
+        fetch(`http://localhost:9292/entries/${id}`,{
+        method: "DELETE",
+        })
+        onEntryDelete(id)
+    }
   return (
     <div>
     <Card sx={{ minWidth: 275 }}>
