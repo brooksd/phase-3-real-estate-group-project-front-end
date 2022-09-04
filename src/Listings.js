@@ -12,7 +12,7 @@ fetch('http://localhost:9292/listings')
 
 },[]);
 
-// 
+
 //  return (
 //     <div ClassName="col-md-3">
 //             <div class="card p-2">
