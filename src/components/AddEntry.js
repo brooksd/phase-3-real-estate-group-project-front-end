@@ -33,6 +33,13 @@ function AddEntry() {
          
         });
       }
+      function handleChange(event) {
+        const key = event.target.id;
+        setFormData({
+          ...formData,
+          [key]: event.target.value,
+        });
+      }
     
   return (
     <form onSubmit={handleSubmit} className="form">
