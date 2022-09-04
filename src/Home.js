@@ -18,7 +18,7 @@ function Home() {
   useEffect(() => {
     fetch("http://localhost:9292/entries")
       .then((res) => res.json())
-      .then((res) => setReviews(res));
+      .then((res) => console.log(res));
   }, []);
 
   const display = reviews.map((item) => (
