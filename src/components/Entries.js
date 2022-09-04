@@ -1,12 +1,13 @@
 
 import React, {useState,useEffect} from "react"
+import "./entries.css";
 
 
 function Entries(){
     
 const [list, setList] = useState([]);
 const[houseInfo, setHouseInfo] = useState([]);
-
+// fetching of data
 useEffect(()=> {
 fetch("http://localhost:9292/entries")
 .then((res)=>res.json())
@@ -29,22 +30,23 @@ function handleSubmit(e){
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(
-            {
-                name: formData.name,
-                no_of_rooms: formData.no_of_rooms,
-                rent_price: formData.rent_price,
-                contact: formData.contact,
-                listing_id: formData.listing_id,
-                location_id: formData.location_id
-            }
-        )
+        body: JSON.stringify(formData),
     })
     .then((r) => r.json())
     .then((newData) => registerHouse(newData))
+    setFormData(
+        {
+            name: '',
+            no_of_rooms: '',
+            rent_price: '',
+            contact: '',
+            listing_id: '',
+            location_id: ''
+        }
+    )
     e.target.reset();
 }
-
+// adding a new house
 function registerHouse(newHouse){
     setHouseInfo([...houseInfo, newHouse])
 }
@@ -52,7 +54,17 @@ function registerHouse(newHouse){
 function handleChange(e){
     setFormData({...formData,[e.target.name]: e.target.value})
 }
-
+// deleting a house
+function handleDelete(houseId){
+    fetch(`http://localhost:9292/entries/${houseId}`, {
+        method: "DELETE",
+    })
+    .then((r) => r.json())
+    .then(() => {
+        const updateList = houseInfo.filter((house) => house.id !== houseId)
+        setHouseInfo(updateList)
+    })
+}
 return (
     <div>
         <div>
@@ -63,6 +75,7 @@ return (
                 <option value="Apartment">Apartment</option>
                 <option value="Bungalow">Bungalow</option>
                 <option value="Mansion">Mansion</option>
+                <option value="Hostel">Hostel</option>
             </select>
             </label>
             </form>
@@ -109,14 +122,12 @@ return (
                         value={formData.contact} />
 
                         <label>House Location
-                            <select onChange={handleChange}>
-                                <option value="Nairobi">Nairobi</option>
-                                <option value="Mombasa">Mombasa</option>
-                                <option value="Nakuru">Nakuru</option>
-                                <option value="Kisumu">Kisumu</option>
-                                <option value="Eldoret">Eldoret</option>
-                                <option value="Machakos">Machakos</option>
-                            </select>
+                        <input type="text" 
+                        name="location" 
+                        className="field" 
+                        placeholder="Enter location of the house" 
+                        onChange={handleChange} 
+                        value={formData.location} />
                         </label>
                         <br/>
 
@@ -131,32 +142,35 @@ return (
                         <br/>
 
                         <div>
-                            <input type="submit" value="Register" />
+                            <button type="submit" style={{background:"green"}}>REGISTER</button>
                         </div>
                     </form>
                 </div>
             </section>
-
+{/* display of house data */}
             <section className="house-list">
                 <div>
                     {houseInfo.map(house => {
                         return(
-                            <div className="properties">
-                                <ul>
-                                    <li>Name of House: {house.name}</li>
-                                    <li>Number of rooms: {house.no_of_rooms}</li>
-                                    <li>Rent price: {house.rent_price}</li>
-                                    <li>Contact: {house.contact}</li>
-                                    <li>Type of House: {house.listing_id}</li>
-                                    <li>Location of House: {house.location_id}</li>
-                                </ul>
-
+                            <div className="flex-container" key={house.id}>
+                                <div className="flex-box">
+                                    <ul style={{listStyleType: "none"}}>
+                                        <li>Name of House: {house.name}</li>
+                                        <li>Number of rooms: {house.no_of_rooms}</li>
+                                        <li>Rent price: {house.rent_price}</li>
+                                        <li>Contact: {house.contact}</li>
+                                        <li>Type of House: {house.listing_id}</li>
+                                        <li>Location of House: {house.location_id}</li>
+                                    </ul>
+                                    <button onClick={() => handleDelete(house.id)} style={{background:"red"}}>DELETE</button>
+                                </div>
                             </div>
                         )
                     })}
                 </div>
 
             </section>
+{/* display of house data */}
     </div>
 )
 }
