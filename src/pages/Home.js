@@ -1,22 +1,28 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import React from 'react'
+
+
+
+
+
+
 function Home() {
   return (
+
     <div>
-      <Form>
-        <Form.Group className='mb-3' controlId='formBasicEmail'>
-          <Form.Label></Form.Label>
-          <Form.Control type='text' placeholder='Search' />
-        </Form.Group>
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
-      <h1>
-        <em>This is our home page</em>
-      </h1>
-    </div>
-  );
+    <AddEntry onAddEntry={handleAddEntry} addEntry={setEntries}/>
+   
+    <EntryList
+    entries={entries}
+    onEntryDelete={handleDeleteEntry}
+    />
+    
+    
+  </div>
+
+
+
+
+  )
 }
-export default Home;
+
+export default Home
