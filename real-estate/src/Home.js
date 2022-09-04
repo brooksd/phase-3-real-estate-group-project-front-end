@@ -1,3 +1,4 @@
+import { Grid } from "@mui/material";
 import React from "react";
 
 import { useState,useEffect } from "react";
@@ -85,8 +86,9 @@ function handleChange(event){
      
       
          <h1><em>This is our home page</em></h1>
-        
+         <Grid container spacing={2}>
       {display}
+      </Grid>
 
 
         </div>
