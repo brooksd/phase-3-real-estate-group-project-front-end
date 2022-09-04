@@ -1,6 +1,6 @@
 import {React,useState,useEffect} from 'react'
-import  EntryList  from './EntryList'
-import AddEntry from './AddEntry';
+import  EntryList  from '../components/EntryList'
+import AddEntry from '../components/AddEntry';
 
 
 

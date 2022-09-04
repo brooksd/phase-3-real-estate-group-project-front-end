@@ -1,11 +1,10 @@
-import React from 'react'
+import {React,useState} from 'react'
 
 
 
 
 
-
-function AddEntry() {
+function AddEntry({onAddEntry}) {
     const [formData, setFormData] = useState({
         name: "",
         no_of_rooms: "",

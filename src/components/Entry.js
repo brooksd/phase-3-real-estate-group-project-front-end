@@ -6,7 +6,8 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-function Entry() {
+function Entry({onEntryDelete,entry}) {
+    const{id,name,contact,no_of_rooms,rent_price}= entry
 
 
     function handleDeleteClick(){
