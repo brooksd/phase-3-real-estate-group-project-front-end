@@ -7,6 +7,7 @@ import NavBar from './components/NavBar';
 import Location from './pages/Location';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Footer from './layouts/Footer';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
             <Location />
           </Route>
         </Switch>
+        <Footer />
       </BrowserRouter>
     </div>
   );
