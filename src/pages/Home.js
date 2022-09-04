@@ -16,6 +16,10 @@ function Home() {
   
   
   },[]);
+  function handleDeleteEntry(id){
+    const updatedEntries = entries.filter((entry)=>entry.id !== id)
+    setEntries(updatedEntries)
+  }
   return (
 
     <div>
