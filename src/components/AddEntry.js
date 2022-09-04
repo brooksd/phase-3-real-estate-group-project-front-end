@@ -6,6 +6,34 @@ import React from 'react'
 
 
 function AddEntry() {
+    const [formData, setFormData] = useState({
+        name: "",
+        no_of_rooms: "",
+        rent_price: "",
+        tell: "",
+      
+      });
+
+      function handleSubmit(event) {
+        event.preventDefault();
+        fetch("http://localhost:9292/entries", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        })
+          .then((r) => r.json())
+          .then((res) => onAddEntry(res));
+        setFormData({
+          name: "",
+          no_of_rooms: "",
+          rent_price: "",
+          tell: "",
+         
+        });
+      }
+    
   return (
     <form onSubmit={handleSubmit} className="form">
     <input
