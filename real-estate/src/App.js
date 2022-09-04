@@ -8,6 +8,7 @@ import Location from './Location';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+
 function App() {
   return (
     <div className="App">
