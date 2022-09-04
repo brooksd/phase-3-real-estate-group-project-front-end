@@ -20,6 +20,11 @@ function Home() {
     const updatedEntries = entries.filter((entry)=>entry.id !== id)
     setEntries(updatedEntries)
   }
+
+  function handleAddEntry (newEntry){
+    setEntries([...entries,newEntry]);
+  }
+  
   return (
 
     <div>
