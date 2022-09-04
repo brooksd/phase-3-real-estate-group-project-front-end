@@ -1,5 +1,9 @@
 import React from "react";
+<<<<<<< HEAD
 import "./About.css"
+=======
+import './About.css'
+>>>>>>> d48c109ec2d8c84230e1d6b64f20c3bab1c24e94
 
 const About = () => {
     return (
