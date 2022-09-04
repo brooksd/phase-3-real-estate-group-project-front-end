@@ -1,0 +1,20 @@
+.a{
+    text-decoration: none;
+    padding: 28px;
+}
+
+.nav-bar{
+    text-align: right;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 28px;
+    display: flex;
+}
+
+.routes-color{
+    color: black;
+}
+
+.active{
+    color: #fcfcfc
+}
