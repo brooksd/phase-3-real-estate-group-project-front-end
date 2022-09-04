@@ -1,0 +1,28 @@
+.listing-landing{
+    background-image: url('../components/images/image.jpg');
+    background-size: cover;
+    height: 95vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.listing-landing-screen{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.landing-tag{
+    font-size: 3rem;
+    padding: 1rem;
+    font-weight: 700;
+    text-transform: capitalize;
+    margin-bottom: 2.5rem;
+    color: white;
+}
