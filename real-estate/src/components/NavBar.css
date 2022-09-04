@@ -1,20 +1,6 @@
-<<<<<<< HEAD
-=======
-.a{
-    text-decoration: none;
-    padding: 28px;
-}
-
->>>>>>> 7a7f9c9f194e88a2d7ae4691b22b776e1b7b7cbe
-.nav-bar{
-    text-align: right;
-    cursor: pointer;
-    text-decoration: none;
-    padding: 28px;
-    display: flex;
-<<<<<<< HEAD
-    justify-content: space-between;
-=======
+*{
+    margin:0;
+    padding: 10px;
 }
 
 .routes-color{
