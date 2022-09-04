@@ -33,7 +33,31 @@ rent_price = {item.rent_price}
 tell= {item.contact}
 />)
 //###########################################
-
+function handleSubmit(event){
+  event.preventDefault()
+  fetch('http://localhost:9292/entries', {
+  method: "POST",
+  headers: {
+  "Content-Type": "application/json",
+  },
+  body: JSON.stringify(formData),
+  })
+  .then((r) => r.json())
+  .then(res=>setReviews(res)
+  );
+  setFormData(
+  {
+  name:'',
+  no_of_rooms:'',
+  rent_price:'',
+  tell:'',
+  listing_id:'',
+  location_id:''
+  
+  }
+  )
+  
+  }
   
 
 
