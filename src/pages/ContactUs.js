@@ -1,4 +1,6 @@
 import React from "react";
+import "../pages/Contact.css"
+import keja from "../components/images/img-1.jpg"
 
 function ContactUs(){
     return(
@@ -12,6 +14,7 @@ function ContactUs(){
 
         get in touch with the best offers ever... a home is a home ...
             </p>
+        <img src={keja} />
         </div>
     )
 }
