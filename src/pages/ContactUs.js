@@ -10,7 +10,7 @@ function ContactUs(){
         <ol>bennoh@gmail.com</ol>
         </li>
 
-        get in touch with the best offers ever
+        get in touch with the best offers ever... a home is a home ...
             </p>
         </div>
     )

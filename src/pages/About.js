@@ -1,5 +1,6 @@
 import React from "react";
 import "./About.css"
+import bungalow from "../components/images/image.jpg"
 
 const About = () => {
     return (
@@ -27,7 +28,7 @@ const About = () => {
   
           </li>
            
-          <img src="./img-1.jpg" alt="bungalow"></img>
+          <img src={bungalow} alt="bungalow"></img>
   
            </p>                                     
       </div>

@@ -1,25 +1,33 @@
 .search-bar{
-    background-color: grey;
-    padding: 2rem;
+    padding: 0.3rem;
+    border-radius: 0.2rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
 }
 
 .select, .search-input{
-    background-color: white;
+    background-color: rgb(250,250,250);
     padding: 1rem;
+    width: 20rem;
+    height: 3rem;
+    border: 1px solid;
+    border-color: rgb(77, 151, 230);
+    border-radius: 0.2rem;
     margin-right: 2.5rem;
     outline: none;
 }
 
-.search-label{
+.search-btn{
     background-color: white;
-    padding: 1rem;
-    margin-right: 2.5rem;
+    padding: 0.5rem;
+    margin: 0, 2.5,0,0;
     outline: none;
-    background: green;
+    background: rgba(10, 200, 10, 0.8);
+    border: 1px solid;
+    border-color: rgba(5, 181, 5, 1);
+    border-radius: 10%;
     font-size: 1.2rem;
-    color: white;
+    color: rgb(255,255,255);
     font-weight: 500;
 }
