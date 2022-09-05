@@ -22,6 +22,9 @@ const NavBar = () => {
             <NavLink to="/location" activeClassName='active'>
                 <span className="routes-color">Location</span>
             </NavLink>
+            <NavLink to="/entries" activeClassName='active'>
+                <span className="routes-color">Entries</span>
+            </NavLink>
         </div>
     )
 }
