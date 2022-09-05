@@ -1,16 +1,19 @@
 .about{
     background-color: aquamarine;
     font-family: 'Courier New', Courier, monospace;
+    /* background-image: url ("img-1.jpg") */
 
 }
 .h1{
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif ;
 }
-.body{
+
     
-    background-size: cover;
-    height: 95vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
+   
+
+
+
+    
+
+
