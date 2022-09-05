@@ -24,7 +24,7 @@ function Entries(){
 // handling submission of the form.
     function handleSubmit(e){
         e.preventDefault()
-        fetch("http://localhost:9292/entries", {
+        fetch(`http://localhost:9292/entries`, {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"
@@ -32,7 +32,7 @@ function Entries(){
             body: JSON.stringify(formData),
         })
         .then((r) => r.json())
-        .then((newHouse) => registerHouse(newHouse))
+        .then((data) => registerHouse(data))
         setFormData(
             {
                 name: '',
@@ -48,7 +48,6 @@ function Entries(){
     // function for handling input of data.
     function handleChange(e){
         setFormData({...formData, [e.target.id]: e.target.value});
-        console.log(formData)
     }
 
     // function for adding a new house
@@ -76,23 +75,23 @@ function Entries(){
                 <h2>Register a new house with us:</h2>
                 <div className="col-md-6">
                     <label className="form-label">Name of House</label>
-                    <input type="text" className="form-control" id="name" onChange={handleChange} value={formData.name}/>
+                    <input type="text" className="form-control" id="name" onChange={handleChange} value={formData.name} required/>
                 </div>
                 <div className="col-md-6">
                     <label className="form-label">Enter Number of rooms:</label>
-                    <input type="text" className="form-control" id="no_of_rooms" onChange={handleChange} value={formData.no_of_rooms}/>
+                    <input type="text" className="form-control" id="no_of_rooms" onChange={handleChange} value={formData.no_of_rooms} required/>
                 </div>
                 <div className="col-md-6">
                     <label className="form-label">Enter the rent price</label>
-                    <input type="text" className="form-control" id="rent_price" placeholder="Rent Price" onChange={handleChange} value={formData.rent_price}/>
+                    <input type="text" className="form-control" id="rent_price" placeholder="Rent Price" onChange={handleChange} value={formData.rent_price} required/>
                 </div>
                 <div className="col-md-6">
                     <label className="form-label">Contact</label>
-                    <input type="text" className="form-control" id="contact" placeholder="Enter your number" onChange={handleChange} value={formData.contact}/>
+                    <input type="text" className="form-control" id="contact" placeholder="Enter your number" onChange={handleChange} value={formData.contact} required/>
                 </div>
                 <div className="col-md-6">
                     <label className="form-label">Location</label>
-                    <input type="text" className="form-control" id="location_id" onChange={handleChange} value={formData.location_id}/>
+                    <input type="text" className="form-control" id="location_id" onChange={handleChange} value={formData.location_id} required/>
                 </div>
                 <div className="col-md-4">
                     <label className="form-label">Type of House</label>
@@ -142,14 +141,13 @@ function Entries(){
                                 </td>
                                 </tr>
                             </tbody>
-                            </table>
-
-                            
+                            </table>                   
                         )
                     })
                 }
-           
             </section>
+
+               {/* displaying of entries form backend */}
         </div>
     )
 
