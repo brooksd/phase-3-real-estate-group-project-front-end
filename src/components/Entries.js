@@ -6,6 +6,7 @@ import "./entries.css";
 function Entries(){
     
 const [list, setList] = useState([]);
+
 const[houseInfo, setHouseInfo] = useState([]);
 // fetching of data
 useEffect(()=> {
@@ -18,9 +19,9 @@ const[formData, setFormData] = useState({
     name:'',
     no_of_rooms:'',
     rent_price:'',
-    contact:'',
-    listing_id:'',
-    location_id:''
+    contact:''
+    // listing_id:'',
+    // location_id:''
 })
 
 function handleSubmit(e){
@@ -30,22 +31,31 @@ function handleSubmit(e){
         headers: {
             "Content-Type" : "application/json"
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+            name: formData.name,
+            no_of_rooms: formData.no_of_rooms,
+            rent_price: formData.rent_price,
+            contact:formData.contact
+            // listing_id: formData.listing_id,
+            // location_id: formData.location_id
+           
+        })
     })
     .then((r) => r.json())
-    .then((newData) => registerHouse(newData))
+    .then((newHouse) => console.log(newHouse))
     setFormData(
         {
             name: '',
             no_of_rooms: '',
             rent_price: '',
-            contact: '',
-            listing_id: '',
-            location_id: ''
+            contact: ''
+            // listing_id: '',
+            // location_id: ''
         }
     )
     e.target.reset();
 }
+console.log(formData)
 // adding a new house
 function registerHouse(newHouse){
     setHouseInfo([...houseInfo, newHouse])
@@ -53,6 +63,7 @@ function registerHouse(newHouse){
 
 function handleChange(e){
     setFormData({...formData,[e.target.name]: e.target.value})
+    console.log(formData)
 }
 // deleting a house
 function handleDelete(houseId){
@@ -70,7 +81,8 @@ return (
         <div>
             <form>
             <label> Filter by type of house
-            <select value={list} onChange={e=>setList(e.target.value)}>
+            <select >
+            {/* value={list} onChange={e=>setList(e.target.value)} */}
                 <option value="All">All</option>
                 <option value="Apartment">Apartment</option>
                 <option value="Bungalow">Bungalow</option>
@@ -96,7 +108,7 @@ return (
                         value={formData.name} />
 
                         <label>Number of rooms
-                            <select onChange={handleChange}>
+                            <select onChange={handleChange} name="no_of_rooms">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -120,19 +132,9 @@ return (
                         placeholder="Enter your number" 
                         onChange={handleChange} 
                         value={formData.contact} />
-
-                        <label>House Location
-                        <input type="text" 
-                        name="location" 
-                        className="field" 
-                        placeholder="Enter location of the house" 
-                        onChange={handleChange} 
-                        value={formData.location} />
-                        </label>
-                        <br/>
-
-                        <label>Type of House 
-                            <select onChange={handleChange}>
+                        
+                        {/* <label>Type of House 
+                            <select onChange={handleChange} name="listing_id">
                                 <option value="Apartment">Apartment</option>
                                 <option value="Bungalow">Bungalow</option>
                                 <option value="Mansion">Mansion</option>
@@ -140,6 +142,17 @@ return (
                             </select>
                         </label>
                         <br/>
+
+
+                        <label>House Location
+                        <input type="text" 
+                        name="location_id" 
+                        className="field" 
+                        placeholder="Enter location of the house" 
+                        onChange={handleChange} 
+                        value={formData.location_id} />
+                        </label>
+                        <br/> */}
 
                         <div>
                             <button type="submit" style={{background:"green"}}>REGISTER</button>
@@ -159,8 +172,8 @@ return (
                                         <li>Number of rooms: {house.no_of_rooms}</li>
                                         <li>Rent price: {house.rent_price}</li>
                                         <li>Contact: {house.contact}</li>
-                                        <li>Type of House: {house.listing_id}</li>
-                                        <li>Location of House: {house.location_id}</li>
+                                        {/* <li>Type of House: {house.listing_id}</li>
+                                        <li>Location of House: {house.location_id}</li> */}
                                     </ul>
                                     <button onClick={() => handleDelete(house.id)} style={{background:"red"}}>DELETE</button>
                                 </div>
