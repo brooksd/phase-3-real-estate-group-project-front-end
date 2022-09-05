@@ -28,7 +28,7 @@ const SearchBar = () => {
         <div className='search'>
           <form className='search-form'>
             <input className='search-input' type='search' />
-            <label className='search-label'>search</label>
+            <button type="button" className='search-btn'>search</button>
           </form>
         </div>
       </div>

@@ -11,9 +11,22 @@ fetch('http://localhost:9292/entries')
 .then((entryData)=>setEntry(entryData))
 },[]);
 
+// function deleteElement(id)
+// {
+//     fetch(`http://localhost:9292/entries${id}`,{
+//      method: 'DELETE'   
+//     }) .then ((result)=>{
+//         result.json().then((resp)=>{
+//            console.warn(resp)
+//         })
+//     })
+// }
+
+
     return (
         <div>
             <div>
+            {/* <button onClick={()=>deleteElement(Entries.id)}>Delete</button> */}
                 <form>
                 <label> Filter by type of house
                 <select value={list} onChange={e=>setList(e.target.value)}>

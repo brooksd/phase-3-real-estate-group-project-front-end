@@ -1,22 +1,47 @@
-import React from 'react';
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import {React,useState,useEffect} from 'react'
+import  EntryList  from '../components/EntryList'
+import AddEntry from '../components/AddEntry';
+
+
+
+
 function Home() {
+  const [entries,setEntries]= useState([])
+
+
+  useEffect (()=>{
+    fetch("http://localhost:9292/entries")
+      .then((r)=>r.json())
+      .then((entries)=>setEntries(entries))
+  
+  
+  },[]);
+  function handleDeleteEntry(id){
+    const updatedEntries = entries.filter((entry)=>entry.id !== id)
+    setEntries(updatedEntries)
+  }
+
+  function handleAddEntry (newEntry){
+    setEntries([...entries,newEntry]);
+  }
+  
   return (
+
     <div>
-      <Form>
-        <Form.Group className='mb-3' controlId='formBasicEmail'>
-          <Form.Label></Form.Label>
-          <Form.Control type='text' placeholder='Search' />
-        </Form.Group>
-        <Button variant='primary' type='submit'>
-          Submit
-        </Button>
-      </Form>
-      <h1>
-        <em>This is our home page</em>
-      </h1>
-    </div>
-  );
+    <AddEntry onAddEntry={handleAddEntry} addEntry={setEntries}/>
+   
+    <EntryList
+    entries={entries}
+    onEntryDelete={handleDeleteEntry}
+    />
+    
+    
+  </div>
+
+
+
+
+  )
 }
-export default Home;
+
+export default Home
