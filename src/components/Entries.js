@@ -10,7 +10,7 @@ function Entries(){
     useEffect(() => {
         fetch("http://localhost:9292/entries")
         .then((r) => r.json())
-        .then((r) => setEntries(r))
+        .then((data) => setEntries(data))
     }, []);
     
     const[formData, setFormData] = useState({
@@ -47,13 +47,26 @@ function Entries(){
 
     // function for handling input of data.
     function handleChange(e){
-        setFormData({...formData, [e.target.id]: e.target.value})
+        setFormData({...formData, [e.target.id]: e.target.value});
         console.log(formData)
     }
 
     // function for adding a new house
-    function registerHouse(newHouse){
-        setEntries([...entries, newHouse])
+    function registerHouse(data){
+        setEntries([...entries, data])
+    }
+
+    // function handling the deleting functionality
+    function handleDelete(id){
+        fetch(`http://localhost:9292/entries/${id}`, {
+            method: "DELETE",
+        })
+        .then((r) => r.json())
+        .then(() => {
+            const updateList = entries.filter((entry) => entry.id !== id)
+            setEntries(updateList)
+
+        })
     }
 
     return(
@@ -115,8 +128,7 @@ function Entries(){
                                 <th scope="col">Location</th>
                                 </tr>
                             </thead>
-                          
-                                    
+
                             <tbody>
                                 <tr>
                                 <td>{entry.name}</td>
@@ -125,9 +137,14 @@ function Entries(){
                                 <td>{entry.contact}</td>
                                 <td>{entry.listing_id}</td>
                                 <td>{entry.location_id}</td>
+                                <td>
+                                    <button type="button" className="btn btn-danger" onClick={() => handleDelete(entry.id)}>DELETE</button>
+                                </td>
                                 </tr>
                             </tbody>
                             </table>
+
+                            
                         )
                     })
                 }
