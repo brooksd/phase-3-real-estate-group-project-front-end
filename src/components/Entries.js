@@ -1,191 +1,141 @@
+import React, {useEffect, useState} from "react";
 
-import React, {useState,useEffect} from "react"
-import "./entries.css";
 
 
 function Entries(){
+
+    const[entries, setEntries] = useState([]);
+
+    // fetching of entries
+    useEffect(() => {
+        fetch("http://localhost:9292/entries")
+        .then((r) => r.json())
+        .then((r) => setEntries(r))
+    }, []);
     
-const [list, setList] = useState([]);
-
-const[houseInfo, setHouseInfo] = useState([]);
-// fetching of data
-useEffect(()=> {
-fetch("http://localhost:9292/entries")
-.then((res)=>res.json())
-.then((res)=>setHouseInfo(res))
-},[]);
-
-const[formData, setFormData] = useState({
-    name:'',
-    no_of_rooms:'',
-    rent_price:'',
-    contact:''
-    // listing_id:'',
-    // location_id:''
-})
-
-function handleSubmit(e){
-    e.preventDefault()
-    fetch("http://localhost:9292/entries",{
-        method: "POST",
-        headers: {
-            "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({
-            name: formData.name,
-            no_of_rooms: formData.no_of_rooms,
-            rent_price: formData.rent_price,
-            contact:formData.contact
-            // listing_id: formData.listing_id,
-            // location_id: formData.location_id
-           
+    const[formData, setFormData] = useState({
+        name: '',
+        no_of_rooms: '',
+        rent_price: '',
+        contact: '',
+        listing_id: '',
+        location_id: ''
+    })
+// handling submission of the form.
+    function handleSubmit(e){
+        e.preventDefault()
+        fetch("http://localhost:9292/entries", {
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify(formData),
         })
-    })
-    .then((r) => r.json())
-    .then((newHouse) => console.log(newHouse))
-    setFormData(
-        {
-            name: '',
-            no_of_rooms: '',
-            rent_price: '',
-            contact: ''
-            // listing_id: '',
-            // location_id: ''
-        }
-    )
-    e.target.reset();
-}
-console.log(formData)
-// adding a new house
-function registerHouse(newHouse){
-    setHouseInfo([...houseInfo, newHouse])
-}
+        .then((r) => r.json())
+        .then((newHouse) => registerHouse(newHouse))
+        setFormData(
+            {
+                name: '',
+                no_of_rooms: '',
+                rent_price: '',
+                contact: '',
+                listing_id: '',
+                location_id: ''
+            }
+        )
+    }
 
-function handleChange(e){
-    setFormData({...formData,[e.target.name]: e.target.value})
-    console.log(formData)
-}
-// deleting a house
-function handleDelete(houseId){
-    fetch(`http://localhost:9292/entries/${houseId}`, {
-        method: "DELETE",
-    })
-    .then((r) => r.json())
-    .then(() => {
-        const updateList = houseInfo.filter((house) => house.id !== houseId)
-        setHouseInfo(updateList)
-    })
-}
-return (
-    <div>
+    // function for handling input of data.
+    function handleChange(e){
+        setFormData({...formData, [e.target.id]: e.target.value})
+        console.log(formData)
+    }
+
+    // function for adding a new house
+    function registerHouse(newHouse){
+        setEntries([...entries, newHouse])
+    }
+
+    return(
         <div>
-            <form>
-            <label> Filter by type of house
-            <select >
-            {/* value={list} onChange={e=>setList(e.target.value)} */}
-                <option value="All">All</option>
-                <option value="Apartment">Apartment</option>
-                <option value="Bungalow">Bungalow</option>
-                <option value="Mansion">Mansion</option>
-                <option value="Hostel">Hostel</option>
-            </select>
-            </label>
+            {/* // registering of a new house. */}
+            <form className="row g-3" onSubmit={handleSubmit}>
+                <h2>Register a new house with us:</h2>
+                <div className="col-md-6">
+                    <label className="form-label">Name of House</label>
+                    <input type="text" className="form-control" id="name" onChange={handleChange} value={formData.name}/>
+                </div>
+                <div className="col-md-6">
+                    <label className="form-label">Enter Number of rooms:</label>
+                    <input type="text" className="form-control" id="no_of_rooms" onChange={handleChange} value={formData.no_of_rooms}/>
+                </div>
+                <div className="col-md-6">
+                    <label className="form-label">Enter the rent price</label>
+                    <input type="text" className="form-control" id="rent_price" placeholder="Rent Price" onChange={handleChange} value={formData.rent_price}/>
+                </div>
+                <div className="col-md-6">
+                    <label className="form-label">Contact</label>
+                    <input type="text" className="form-control" id="contact" placeholder="Enter your number" onChange={handleChange} value={formData.contact}/>
+                </div>
+                <div className="col-md-6">
+                    <label className="form-label">Location</label>
+                    <input type="text" className="form-control" id="location_id" onChange={handleChange} value={formData.location_id}/>
+                </div>
+                <div className="col-md-4">
+                    <label className="form-label">Type of House</label>
+                    <select id="listing_id" className="form-select" onChange={handleChange}>
+                    <option value="Choose">Choose...</option>
+                    <option value="Bungalow">Bungalow</option>
+                    <option value="Apartment">Apartment</option>
+                    <option value="Mansion">Mansion</option>
+                    <option value="Hostel">Hostel</option>
+                    </select>
+                </div>
+                <div className="col-12">
+                    <button type="submit" className="btn btn-primary">Register</button>
+                </div>
             </form>
-        </div>
-        {/* <h2>This is our listings page</h2> */}
-        {/* <div class="row mt-2 g-1">
-            {displayListings}</div> */}
-
-            <section className="register">
-                <div className="registerHouse">
-                    <form onSubmit = {handleSubmit}>
-                        <h2>Register a new house with us</h2>
-                        <input type="text" 
-                        name="name" 
-                        className="field" 
-                        placeholder="Enter name of the house" 
-                        onChange={handleChange} 
-                        value={formData.name} />
-
-                        <label>Number of rooms
-                            <select onChange={handleChange} name="no_of_rooms">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                                <option value="6 and more">6 and more</option>
-                            </select>
-                        </label>
-                        <br/>
-
-                        <input type="text" 
-                        name="rent_price" 
-                        className="field" 
-                        placeholder="Enter rent price" 
-                        onChange={handleChange} 
-                        value={formData.rent_price} />
-
-                        <input type="text" 
-                        name="contact" 
-                        className="field" 
-                        placeholder="Enter your number" 
-                        onChange={handleChange} 
-                        value={formData.contact} />
-                        
-                        {/* <label>Type of House 
-                            <select onChange={handleChange} name="listing_id">
-                                <option value="Apartment">Apartment</option>
-                                <option value="Bungalow">Bungalow</option>
-                                <option value="Mansion">Mansion</option>
-                                <option value="Hostel">Hostel</option>
-                            </select>
-                        </label>
-                        <br/>
+            {/* // registering of a new house. */}
 
 
-                        <label>House Location
-                        <input type="text" 
-                        name="location_id" 
-                        className="field" 
-                        placeholder="Enter location of the house" 
-                        onChange={handleChange} 
-                        value={formData.location_id} />
-                        </label>
-                        <br/> */}
+            {/* displaying of entries form backend */}
 
-                        <div>
-                            <button type="submit" style={{background:"green"}}>REGISTER</button>
-                        </div>
-                    </form>
-                </div>
-            </section>
-{/* display of house data */}
-            <section className="house-list">
-                <div>
-                    {houseInfo.map(house => {
+            <section>
+                {
+                    entries.map((entry) => {
                         return(
-                            <div className="flex-container" key={house.id}>
-                                <div className="flex-box">
-                                    <ul style={{listStyleType: "none"}}>
-                                        <li>Name of House: {house.name}</li>
-                                        <li>Number of rooms: {house.no_of_rooms}</li>
-                                        <li>Rent price: {house.rent_price}</li>
-                                        <li>Contact: {house.contact}</li>
-                                        {/* <li>Type of House: {house.listing_id}</li>
-                                        <li>Location of House: {house.location_id}</li> */}
-                                    </ul>
-                                    <button onClick={() => handleDelete(house.id)} style={{background:"red"}}>DELETE</button>
-                                </div>
-                            </div>
+                            <table className="table table-striped table-hover" key={entry.id} >
+                            <thead>
+                                <tr>
+                                <th scope="col">Name of House</th>
+                                <th scope="col">Number of Rooms</th>
+                                <th scope="col">Rent price</th>
+                                <th scope="col">Contact</th>
+                                <th scope="col">Type of house</th>
+                                <th scope="col">Location</th>
+                                </tr>
+                            </thead>
+                          
+                                    
+                            <tbody>
+                                <tr>
+                                <td>{entry.name}</td>
+                                <td>{entry.no_of_rooms}</td>
+                                <td>{entry.rent_price}</td>
+                                <td>{entry.contact}</td>
+                                <td>{entry.listing_id}</td>
+                                <td>{entry.location_id}</td>
+                                </tr>
+                            </tbody>
+                            </table>
                         )
-                    })}
-                </div>
-
+                    })
+                }
+           
             </section>
-{/* display of house data */}
-    </div>
-)
+        </div>
+    )
+
 }
 
 export default Entries;
