@@ -1,11 +1,10 @@
 
 import React, {useState,useEffect} from "react"
-import "./entries.css";
 
 
 function Entries(){
     
-const [list, setList] = useState([]);
+const [list, setList] = useState("All");
 
 const[houseInfo, setHouseInfo] = useState([]);
 // fetching of data
@@ -60,7 +59,9 @@ console.log(formData)
 function registerHouse(newHouse){
     setHouseInfo([...houseInfo, newHouse])
 }
-
+function handleHouseType(e){
+    setList(e.target.value)
+}
 function handleChange(e){
     setFormData({...formData,[e.target.name]: e.target.value})
     console.log(formData)
@@ -76,12 +77,15 @@ function handleDelete(houseId){
         setHouseInfo(updateList)
     })
 }
+const filteredHouses = houseInfo.filter((house)=>{if(list === "All" || list === house.type_of_house)
+return true
+})
 return (
     <div>
         <div>
             <form>
             <label> Filter by type of house
-            <select >
+            <select onChange={handleHouseType}>
             {/* value={list} onChange={e=>setList(e.target.value)} */}
                 <option value="All">All</option>
                 <option value="Apartment">Apartment</option>
@@ -163,7 +167,7 @@ return (
 {/* display of house data */}
             <section className="house-list">
                 <div>
-                    {houseInfo.map(house => {
+                    {filteredHouses.map(house => {
                         return(
                             <div className="flex-container" key={house.id}>
                                 <div className="flex-box">
