@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from "react";
 
 
-
 function Entries(){
 
     const[entries, setEntries] = useState([]);
+    const[search, setSearch] = useState('');
 
     // fetching of entries
     useEffect(() => {
@@ -13,6 +13,7 @@ function Entries(){
         .then((data) => setEntries(data))
     }, []);
     
+    // deals with the form.
     const[formData, setFormData] = useState({
         name: '',
         no_of_rooms: '',
@@ -109,12 +110,40 @@ function Entries(){
             </form>
             {/* // registering of a new house. */}
 
+            {/* searching section */}
+            <div className="row">
+                            <div className="col-md-6">
+                                <form className="row" >
+                                    <div className="col">
+                                    <div className="mb-2">
+                                        <input 
+                                        name="text"
+                                        value={search.text}
+                                        onChange={(e) => {setSearch(e.target.value)}}
+                                        type="text"className="form-control" placeholder="Search Names" />
+                                    </div>
+                                    </div>
+                                    <div className="col">
+                                    <div className="mb-2">
+                                        <input type="submit" className="btn btn-outline-dark" value="Search" />
+                                    </div>
+                                    </div>            
+                                </form>
+                            </div>
+                        </div>
+
+            {/* searching section */}
+
 
             {/* displaying of entries form backend */}
 
             <section>
                 {
-                    entries.map((entry) => {
+                    entries.length > 0 && entries.filter((entry) => {
+                        return(
+                            entry.name.toLowerCase().includes(search.toLowerCase())
+                        )
+                    }).map((entry) => {
                         return(
                             <table className="table table-striped table-hover" key={entry.id} >
                             <thead>
